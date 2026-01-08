@@ -5,16 +5,16 @@ import java.util.Map;
 
 public class MinimumWindowSubstringPractice {
 
-	public static int minimumWindowSubstring(String s, String t) {
+	public static int minimumWindowSubString(String s, String t) {
 		int sSize = s.length();
 		int tSize = t.length();
-		Map<Character, Integer> map = new HashMap<>();
 		int start = 0;
 		int end = 0;
 		int min = Integer.MAX_VALUE;
+		Map<Character, Integer> map = new HashMap<>();
 
 		if (sSize == 0 || tSize == 0) {
-			throw new IllegalArgumentException("No proper String is given to us!!");
+			throw new IllegalArgumentException("s or t string should have some length");
 		}
 
 		for (int i = 0; i < tSize; i++) {
@@ -24,10 +24,11 @@ public class MinimumWindowSubstringPractice {
 		int counter = map.size();
 
 		while (end < sSize) {
-			if (map.containsKey(s.charAt(end))) {
-				int count = map.get(s.charAt(end));
+			Character endCharacter = s.charAt(end);
+			if (map.containsKey(endCharacter)) {
+				int count = map.get(endCharacter);
 				count--;
-				map.put(s.charAt(end), count);
+				map.put(endCharacter, count);
 
 				if (count == 0) {
 					counter--;
@@ -36,28 +37,33 @@ public class MinimumWindowSubstringPractice {
 
 			while (counter == 0) {
 				min = Math.min(min, end - start + 1);
+				Character startCharacter = s.charAt(start);
+				if (map.containsKey(startCharacter)) {
+					int count = map.get(startCharacter);
+					count++;
+					map.put(startCharacter, count);
 
-				Character startChar = s.charAt(start);
-
-				if (map.containsKey(startChar)) {
-					int startCharCount = map.get(startChar);
-					startCharCount++;
-					map.put(startChar, startCharCount);
-
-					if (startCharCount > 0) {
+					if (count > 0) {
 						counter++;
 					}
+
 				}
 				start++;
+
 			}
 			end++;
 		}
+
 		return min == Integer.MAX_VALUE ? -1 : min;
 
 	}
 
 	public static void main(String[] args) {
+		String s = "ADOBECODEBANC";
+		String t = "ABC";
 
+		int count = minimumWindowSubString(s, t);
+		System.out.println(count);
 	}
 
 }
