@@ -47,7 +47,7 @@ public class FirstNegetiveNumber {
 		
 		int[] arr = {-1,2,3,4,-2,-5,6};
 		int k = 3;
-		ArrayList<Integer> ansList = firstNegetive(arr, 3);
+		ArrayList<Integer> ansList = firstNegetive(arr, k);
 		System.out.println(ansList);
 
 	}
