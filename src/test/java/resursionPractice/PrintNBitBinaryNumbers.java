@@ -4,6 +4,7 @@ public class PrintNBitBinaryNumbers {
 	
 	public static void solve(int n, int ones, int zeros, String output) {
 		
+		//base condition
 		if(n == 0) {
 			System.out.println(output);
 			return;
