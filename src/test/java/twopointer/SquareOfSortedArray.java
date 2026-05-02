@@ -43,7 +43,6 @@ public class SquareOfSortedArray {
 	}
 	
 	public static int[] sortedSquare(int[] arr) {
-		int size = arr.length;
 		
 		ArrayList<Integer> posList = new ArrayList<>();
 		ArrayList<Integer> negList = new ArrayList<>();
@@ -70,7 +69,7 @@ public class SquareOfSortedArray {
 			for(int i=0;i<negList.size();i++) {
 				negList.set(i, negList.get(i)*negList.get(i));
 			}
-			Collections.sort(negList);
+			Collections.reverse(negList);
 			return negList.stream().mapToInt(Integer::intValue).toArray();
 		}
 		
