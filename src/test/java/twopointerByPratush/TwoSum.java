@@ -1,4 +1,4 @@
-package twopointer;
+package twopointerByPratush;
 
 import java.util.Arrays;
 
