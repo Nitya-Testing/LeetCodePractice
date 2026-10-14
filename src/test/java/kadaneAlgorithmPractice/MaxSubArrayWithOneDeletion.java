@@ -10,8 +10,11 @@ public class MaxSubArrayWithOneDeletion {
 		
 		for(int i=1;i<arr.length;i++) {
 			int v1 = arr[i];
-			bestoneDelete = Math.max(bestoneDelete+v1, bestNoDelete);
-			bestNoDelete = Math.max(v1+bestNoDelete,v1);
+			int prevNoDelete = bestNoDelete;
+			int prevOneDelete = bestoneDelete;
+			bestNoDelete = Math.max(v1+prevNoDelete,v1);
+			bestoneDelete = Math.max(prevOneDelete+v1, prevNoDelete);
+			
 			
 			res = Math.max(res, Math.max(v1, Math.max(bestoneDelete, bestNoDelete)));
 			
@@ -23,6 +26,9 @@ public class MaxSubArrayWithOneDeletion {
 
 	public static void main(String[] args) {
 		
+		int[] arr = {1,-2,0,3};
+		int sum = maxSubArrayWithOneDeletion(arr);
+		System.out.println(sum);
 
 	}
 
